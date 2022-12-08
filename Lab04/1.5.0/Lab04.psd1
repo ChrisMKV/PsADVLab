@@ -21,7 +21,7 @@ ModuleVersion = '1.5.0'
 GUID = '715e7105-f9a9-4410-a9c6-7e7f3cae6779'
 
 # Author of this module
-Author = 'christoph.berg@cssf.lu'
+Author = '41515846+ChrisMKV@users.noreply.github.com'
 
 # Company or vendor of this module
 CompanyName = 'CSSF'
