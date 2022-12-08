@@ -11,9 +11,5 @@ Foreach ($Function in @($Public + $Private)) {
     }
 }
 
-function Get-PowerShellTrainer {
-    'Arnaud PETITJEAN (Start-Scripting.io)'
-}
-
 #Export public functions
 Export-ModuleMember -Function $Public.BaseName
