@@ -1,6 +1,6 @@
 function Write-Log {
-    
-    
+
+
     [CmdletBinding(SupportsShouldProcess, DefaultParameterSetName = 'LogMessage')]
     param (
 
@@ -10,7 +10,7 @@ function Write-Log {
         [ValidateScript({ Test-Path $_ -IsValid })]
         [string[]]
         $FilePath,
-            
+
         #Mandatory. Specify the message that is written to the log file.
         [Parameter(Mandatory = $true,
             Position = 1,
@@ -23,7 +23,7 @@ function Write-Log {
         #Optional. Specify to generate the log footer and close the logfile.
         [Parameter(Mandatory = $true, ParameterSetName = 'LogMessage')]
         [Validateset('Information', 'Warning', 'Error', IgnoreCase = $false)]
-        [string]$Category, 
+        [string]$Category,
 
         #Optional. Specify to open the logfile and generate the log header.
         [Parameter(Mandatory = $true, ParameterSetName = 'LogHeader')]
@@ -32,7 +32,7 @@ function Write-Log {
         #Optional. Specify to generate the log footer and close the logfile.
         [Parameter(Mandatory = $true, ParameterSetName = 'LogFooter')]
         [switch]$Footer,
-      
+
         #Optional. Specify the delimiter to separate log data.
         [Parameter(Mandatory = $false)]
         [Validateset(',', ';', '|', 'Tab')]
@@ -75,9 +75,9 @@ function Write-Log {
             if ($PSBoundParameters.ContainsKey('Message')) {
                 #Replace TAB delimiter
                 If ($Delimiter -eq 'Tab') { [string]$Delimiter = "`t" }
-            
+
                 #Log message - always to file
-                $Output = (Get-Date -Format s) + $Delimiter + $Category + $Delimiter + $Message 
+                $Output = (Get-Date -Format s) + $Delimiter + $Category + $Delimiter + $Message
                 $Output | Out-File $LogFile.FullName -Append
 
                 #Log message - to screen if specified
@@ -100,7 +100,7 @@ function Write-Log {
                     Write-Warning "Unable to calculate execution time based on log file creation time."
                     $ExecTime = $null
                 }
-                
+
                 '+----------------------------------------------------------------------------------------+' | Out-File $LogFile.FullName -Append
                 "End time:       $(Get-Date -Format s)" | Out-File $LogFile.FullName -Append
                 "Total duration: {0:G}" -f $ExecTime | Out-File $LogFile.FullName -Append
